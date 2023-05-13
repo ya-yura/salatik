@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<title>
+  {% block title %}Последние обновления на сайте{% endblock %}
+</title>
+<h1>Это главная страница проекта Yatube</h1>
+<hr>
+
+{% include 'posts/includes/switcher.html' %}
+{% load cache %}
+{% cache 20 index_page request.user.username %}
+
+{% for ingredient_type, ingredients in ingredient_dict.items %}
+    <h2>{{ ingredient_type.name }}</h2>
+    <ul>
+        {% for ingredient in ingredients %}
+            <li>{{ ingredient.name }} - {{ ingredient.price_per_unit }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+{% endcache %}     
+{% include 'posts/includes/paginator.html' %}
+{% endblock %}
