@@ -144,7 +144,7 @@ class Delivery(models.Model):
     courier = models.ForeignKey('User', on_delete=models.CASCADE)
     address = models.CharField(max_length=255)
     status = models.CharField(max_length=255)
-    delivery_fee = models.DecimalField(max_digits=8)
+    delivery_fee = models.DecimalField(max_digits=8, decimal_places=2)
 
     class Meta:
         verbose_name = 'Доставка'
