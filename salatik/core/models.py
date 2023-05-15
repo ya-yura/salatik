@@ -1,39 +1,7 @@
-
 from django.db import models
+from django.contrib.auth import get_user_model
 
-
-class User(models.Model):
-    """
-    Пользователь
-    """
-    username = models.CharField(max_length=255, unique=True)
-    email = models.EmailField(max_length=255, unique=True)
-    password = models.CharField(max_length=255)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    bio = models.TextField()
-    role = models.ForeignKey('Role', on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
-
-    def __str__(self):
-        return self.username
-
-
-class Role(models.Model):
-    """
-    Роль
-    """
-    name = models.CharField(max_length=255)
-
-    class Meta:
-        verbose_name = 'Роль'
-        verbose_name_plural = 'Роли'
-
-    def __str__(self):
-        return self.name
+User = get_user_model()
 
 
 class IngredientType(models.Model):
@@ -107,7 +75,7 @@ class Order(models.Model):
     """
     Заказ
     """
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     salad = models.ForeignKey('Salad', on_delete=models.CASCADE)
     status = models.CharField(max_length=255)
     total_price = models.DecimalField(max_digits=8, decimal_places=2)
@@ -141,7 +109,7 @@ class Delivery(models.Model):
     Доставка
     """
     order = models.ForeignKey('Order', on_delete=models.CASCADE)
-    courier = models.ForeignKey('User', on_delete=models.CASCADE)
+    courier = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=255)
     status = models.CharField(max_length=255)
     delivery_fee = models.DecimalField(max_digits=8, decimal_places=2)
