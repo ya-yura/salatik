@@ -1,8 +1,12 @@
-from rest_framework.test import APITestCase
+import os
+from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from core.models import Salad
 from django.urls import reverse
+from dotenv import load_dotenv
 
+
+load_dotenv()
 
 SALADS_LIST_URL = 'salads-list'
 SALADS_DETAIL_URL = 'salads-detail'
@@ -10,6 +14,8 @@ TEST_SALADS_NAME = 'Macaroni salad'
 TEST_SALADS_BULK_CREATE_NAME = 'Macaroni salad bulk created'
 TEST_SALADS_POST_REQUEST_NAME = 'Macaroni salad POST test'
 TEST_SALADS_DESCRIPTION = 'Classic English salad'
+ADMIN_USERNAME = os.getenv('ADMIN_USERNAME')
+ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
 
 
 class SaladTests(APITestCase):
@@ -29,10 +35,18 @@ class SaladTests(APITestCase):
             ) for i in range(4)
         ])
 
+    def setUp(self):
+        self.guest_client = APIClient()
+        self.admin_client = APIClient()
+        self.admin_client.login(
+            username=ADMIN_USERNAME,
+            password=ADMIN_PASSWORD
+        )
+
     def test_post_salads(self):
         """Тест POST запроса к эндпоинту /salads."""
 
-        response = self.client.post(
+        response = self.guest_client.post(
             reverse(SALADS_LIST_URL),
             {
                 'name': TEST_SALADS_POST_REQUEST_NAME,
@@ -51,14 +65,14 @@ class SaladTests(APITestCase):
     def test_salads_list(self):
         """Тест GET запроса к эндпоинту /salads на получение 5 салатов."""
 
-        response = self.client.get(reverse(SALADS_LIST_URL))
+        response = self.guest_client.get(reverse(SALADS_LIST_URL))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 5)
 
     def test_salads_detail(self):
         """Тест GET запроса к эндпоинту /salads на получение одного салата."""
 
-        response = self.client.get(reverse(
+        response = self.guest_client.get(reverse(
             SALADS_DETAIL_URL,
             kwargs={'pk': self.salad.pk})
         )
@@ -72,7 +86,7 @@ class SaladTests(APITestCase):
         """Тест DELETE запроса к эндпоинту /salads."""
 
         salads_count = Salad.objects.count()
-        self.client.delete(reverse(
+        self.admin_client.delete(reverse(
             SALADS_DETAIL_URL,
             kwargs={'pk': self.salad.pk})
         )
