@@ -44,9 +44,9 @@ class SaladTests(APITestCase):
         )
 
     def test_post_salads(self):
-        """Тест POST запроса к эндпоинту /salads."""
+        """Тест POST запроса от админа к эндпоинту /salads."""
 
-        response = self.guest_client.post(
+        response = self.admin_client.post(
             reverse(SALADS_LIST_URL),
             {
                 'name': TEST_SALADS_POST_REQUEST_NAME,
@@ -63,14 +63,16 @@ class SaladTests(APITestCase):
         )
 
     def test_salads_list(self):
-        """Тест GET запроса к эндпоинту /salads на получение 5 салатов."""
+        """Тест GET запроса от гостя к эндпоинту /salads
+        на получение 5 салатов."""
 
         response = self.guest_client.get(reverse(SALADS_LIST_URL))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 5)
 
     def test_salads_detail(self):
-        """Тест GET запроса к эндпоинту /salads на получение одного салата."""
+        """Тест GET запроса от гостя к эндпоинту /salads
+        на получение одного салата."""
 
         response = self.guest_client.get(reverse(
             SALADS_DETAIL_URL,
@@ -83,7 +85,7 @@ class SaladTests(APITestCase):
         )
 
     def test_delete_salads(self):
-        """Тест DELETE запроса к эндпоинту /salads."""
+        """Тест DELETE запроса от админа к эндпоинту /salads."""
 
         salads_count = Salad.objects.count()
         self.admin_client.delete(reverse(
