@@ -23,7 +23,7 @@ ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
 
 
 class SaladTests(APITestCase):
-    """Тесты Salads."""
+    """Тесты эндпоинта /salads."""
 
     @classmethod
     def setUpClass(cls):
@@ -78,7 +78,7 @@ class SaladTests(APITestCase):
     #         },
     #         format='json'
     #     )
-    #     self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+    #     self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
     #     self.assertEqual(Salad.objects.count(), 5)
 
     def test_salads_list(self):
@@ -121,9 +121,9 @@ class SaladTests(APITestCase):
     #         reverse(SALADS_DETAIL_URL, kwargs={'pk': self.salad.pk})
     #     )
     #     self.assertEqual(Salad.objects.count(), salads_count)
-    #     self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+    #     self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_patch_salads(self):
+    def test_admin_can_patch_salads(self):
         """Тест PATCH запроса от админа к эндпоинту /salads."""
 
         data = {
@@ -135,8 +135,27 @@ class SaladTests(APITestCase):
             data=data,
             format='json'
         )
-        self.assertEqual(
-            Salad.objects.get(pk=self.salad.pk).name,
-            data['name']
+        self.assertTrue(Salad.objects.filter(
+            name=TEST_SALADS_PATCH_NAME,
+            description=TEST_SALADS_PATCH_DESCRIPTION).exists()
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    # def test_guest_cant_patch_salads(self):  # пока нет пермишенов
+    #     """Тест PATCH запроса от анонимного пользователя
+    #     к эндпоинту /salads."""
+
+    #     data = {
+    #             'name': TEST_SALADS_PATCH_NAME,
+    #             'description': TEST_SALADS_PATCH_DESCRIPTION
+    #     }
+    #     response = self.guest_client.patch(
+    #         reverse(SALADS_DETAIL_URL, kwargs={'pk': self.salad.pk}),
+    #         data=data,
+    #         format='json'
+    #     )
+    #     self.assertFalse(Salad.objects.filter(
+    #         name=TEST_SALADS_PATCH_NAME,
+    #         description=TEST_SALADS_PATCH_DESCRIPTION).exists()
+    #     )
+    #     self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
