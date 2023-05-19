@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.utils.text import slugify
+from slugify import slugify
+from random import randint
 
 User = get_user_model()
 
@@ -10,7 +11,7 @@ class IngredientType(models.Model):
     Тип ингредиента
     """
     name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, unique=True, blank=True)
+    slug = models.SlugField(max_length=255, unique=True)
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -23,6 +24,11 @@ class IngredientType(models.Model):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+    @classmethod
+    def create(cls, **kwargs):
+        kwargs['slug'] = slugify(kwargs['name'])
+        return cls.objects.create(**kwargs)
+
     def __str__(self):
         return self.name
 
@@ -32,7 +38,7 @@ class Ingredient(models.Model):
     Ингредиент
     """
     name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, unique=True, blank=True)
+    slug = models.SlugField(max_length=255, unique=True)
     photo = models.ImageField(upload_to='ingredient_photos')
     type = models.ForeignKey('IngredientType', on_delete=models.CASCADE)
     price_per_unit = models.DecimalField(max_digits=8, decimal_places=2)
@@ -52,6 +58,19 @@ class Ingredient(models.Model):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+    @classmethod
+    def create(cls, **kwargs):
+        name = kwargs.get('name')
+        slug = slugify(name)
+        while IngredientType.objects.filter(slug=slug).exists():
+            # Если значение slug уже существует, добавляем
+            # случайное число к нему
+            random_number = randint(1, 100)
+            slug = f"{slug}-{random_number}"
+
+        kwargs['slug'] = slug
+        return cls.objects.create(**kwargs)
+
     def __str__(self):
         return self.name
 
@@ -61,7 +80,7 @@ class Salad(models.Model):
     Салат
     """
     name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, unique=True, blank=True)
+    slug = models.SlugField(max_length=255, unique=True)
     description = models.TextField()
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -75,6 +94,17 @@ class Salad(models.Model):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+    @classmethod
+    def create(cls, **kwargs):
+        name = kwargs.get('name')
+        slug = slugify(name)
+        while IngredientType.objects.filter(slug=slug).exists():
+            random_number = randint(1, 100)
+            slug = f"{slug}-{random_number}"
+
+        kwargs['slug'] = slug
+        return cls.objects.create(**kwargs)
+
     def __str__(self):
         return self.name
 
@@ -84,7 +114,7 @@ class Component(models.Model):
     Компонент
     """
     salad = models.ForeignKey('Salad', on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=255, unique=True, blank=True)
+    slug = models.SlugField(max_length=255, unique=True)
     ingredient = models.ForeignKey('Ingredient', on_delete=models.CASCADE)
     weight = models.DecimalField(max_digits=8, decimal_places=2)
     order = models.IntegerField()
@@ -99,6 +129,17 @@ class Component(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+
+    @classmethod
+    def create(cls, **kwargs):
+        name = kwargs.get('name')
+        slug = slugify(name)
+        while IngredientType.objects.filter(slug=slug).exists():
+            random_number = randint(1, 100)
+            slug = f"{slug}-{random_number}"
+
+        kwargs['slug'] = slug
+        return cls.objects.create(**kwargs)
 
     def __str__(self):
         return f'{self.ingredient} ({self.salad})'
