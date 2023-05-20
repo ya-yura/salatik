@@ -4,162 +4,33 @@ import random
 # python manage.py runscript dataset
 
 
+def get_or_create_ingredient_type(name):
+    try:
+        ingredient_type = IngredientType.objects.get(name=name)
+    except IngredientType.DoesNotExist:
+        ingredient_type = IngredientType.objects.create(name=name)
+    return ingredient_type
+
+
 def run():
-    try:
-        additional_type = IngredientType.objects.get(
-            name='Дополнительные ингредиенты'
-            )
-    except IngredientType.DoesNotExist:
-        additional_type = IngredientType.objects.create(
-            name='Дополнительные ингредиенты'
-            )
+    additional_type = get_or_create_ingredient_type('Дополнительные ингредиенты')
+    garnish_type = get_or_create_ingredient_type('Гарнир')
+    protein_type = get_or_create_ingredient_type('Белок')
+    fruit_type = get_or_create_ingredient_type('Фрукты')
+    vegetable_type = get_or_create_ingredient_type('Овощи')
+    sauce_type = get_or_create_ingredient_type('Соусы и заправки')
+    seasoning_type = get_or_create_ingredient_type('Приправы и специи')
+    seafood_type = get_or_create_ingredient_type('Морепродукты')
+    nuts_seeds_type = get_or_create_ingredient_type('Семена и орехи')
+    dried_fruits_type = get_or_create_ingredient_type('Сухие фрукты')
+    cheese_type = get_or_create_ingredient_type('Сыры')
+    pickled_vegetables_type = get_or_create_ingredient_type('Маринованные овощи')
+    grains_legumes_type = get_or_create_ingredient_type('Зерновые и бобовые')
+    texture_additives_type = get_or_create_ingredient_type('Добавки для текстуры')
+    green_vegetables_type = get_or_create_ingredient_type('Зеленые овощи')
+    spicy_additives_type = get_or_create_ingredient_type('Добавки для остроты')
+    other_vegetables_type = get_or_create_ingredient_type('Другие овощи')
 
-    try:
-        garnish_type = IngredientType.objects.get(
-            name='Гарнир'
-            )
-    except IngredientType.DoesNotExist:
-        garnish_type = IngredientType.objects.create(
-            name='Гарнир'
-        )
-
-    try:
-        protein_type = IngredientType.objects.get(
-            name='Белок'
-            )
-    except IngredientType.DoesNotExist:
-        protein_type = IngredientType.objects.create(
-            name='Белок'
-            )
-
-    try:
-        fruit_type = IngredientType.objects.get(
-            name='Фрукты'
-            )
-    except IngredientType.DoesNotExist:
-        fruit_type = IngredientType.objects.create(
-            name='Фрукты'
-            )
-
-    try:
-        vegetable_type = IngredientType.objects.get(
-            name='Овощи'
-            )
-    except IngredientType.DoesNotExist:
-        vegetable_type = IngredientType.objects.create(
-            name='Овощи'
-            )
-
-    try:
-        sauce_type = IngredientType.objects.get(
-            name='Соусы и заправки'
-            )
-    except IngredientType.DoesNotExist:
-        sauce_type = IngredientType.objects.create(
-            name='Соусы и заправки'
-            )
-
-    try:
-        seasoning_type = IngredientType.objects.get(
-            name='Приправы и специи'
-            )
-    except IngredientType.DoesNotExist:
-        seasoning_type = IngredientType.objects.create(
-            name='Приправы и специи'
-            )
-
-    try:
-        seafood_type = IngredientType.objects.get(
-            name='Морепродукты'
-            )
-    except IngredientType.DoesNotExist:
-        seafood_type = IngredientType.objects.create(
-            name='Морепродукты'
-            )
-
-    try:
-        nuts_seeds_type = IngredientType.objects.get(
-            name='Семена и орехи'
-            )
-    except IngredientType.DoesNotExist:
-        nuts_seeds_type = IngredientType.objects.create(
-            name='Семена и орехи'
-            )
-
-    try:
-        dried_fruits_type = IngredientType.objects.get(
-            name='Сухие фрукты'
-            )
-    except IngredientType.DoesNotExist:
-        dried_fruits_type = IngredientType.objects.create(
-            name='Сухие фрукты'
-            )
-
-    try:
-        cheese_type = IngredientType.objects.get(
-            name='Сыры'
-            )
-    except IngredientType.DoesNotExist:
-        cheese_type = IngredientType.objects.create(
-            name='Сыры'
-            )
-
-    try:
-        pickled_vegetables_type = IngredientType.objects.get(
-            name='Маринованные овощи'
-            )
-    except IngredientType.DoesNotExist:
-        pickled_vegetables_type = IngredientType.objects.create(
-            name='Маринованные овощи'
-            )
-
-    try:
-        grains_legumes_type = IngredientType.objects.get(
-            name='Зерновые и бобовые'
-            )
-    except IngredientType.DoesNotExist:
-        grains_legumes_type = IngredientType.objects.create(
-            name='Зерновые и бобовые'
-            )
-
-    try:
-        texture_additives_type = IngredientType.objects.get(
-            name='Добавки для текстуры'
-            )
-    except IngredientType.DoesNotExist:
-        texture_additives_type = IngredientType.objects.create(
-            name='Добавки для текстуры'
-            )
-
-    try:
-        green_vegetables_type = IngredientType.objects.get(
-            name='Зеленые овощи'
-            )
-    except IngredientType.DoesNotExist:
-        green_vegetables_type = IngredientType.objects.create(
-            name='Зеленые овощи'
-            )
-
-    try:
-        spicy_additives_type = IngredientType.objects.get(
-            name='Добавки для остроты'
-            )
-    except IngredientType.DoesNotExist:
-        spicy_additives_type = IngredientType.objects.create(
-            name='Добавки для остроты'
-            )
-
-    try:
-        other_vegetables_type = IngredientType.objects.get(
-            name='Другие овощи'
-            )
-    except IngredientType.DoesNotExist:
-        other_vegetables_type = IngredientType.objects.create(
-            name='Другие овощи'
-            )
-
-
-"""
     additional_ingredients = [
         {
             'name': 'Грецкие орехи',
@@ -252,7 +123,7 @@ def run():
     ]
 
     for additional_data in additional_ingredients:
-        if not Ingredient.objects.get(
+        if not Ingredient.objects.filter(
                 name=additional_data['name']
         ):
             additional_data['type'] = additional_type
@@ -305,7 +176,7 @@ def run():
     ]
 
     for sauce_data in sauces:
-        if not Ingredient.objects.get(
+        if not Ingredient.objects.filter(
                 name=sauce_data['name']
         ):
             sauce_data['type'] = sauce_type
@@ -374,7 +245,7 @@ def run():
     ]
 
     for garnish_data in garnishes:
-        if not Ingredient.objects.get(
+        if not Ingredient.objects.filter(
                 name=garnish_data['name']
         ):
             garnish_data['type'] = garnish_type
@@ -443,7 +314,7 @@ def run():
     ]
 
     for protein_data in proteins:
-        if not Ingredient.objects.get(
+        if not Ingredient.objects.filter(
                 name=protein_data['name']
         ):
             protein_data['type'] = protein_type
@@ -512,7 +383,7 @@ def run():
     ]
 
     for fruit_data in fruits:
-        if not Ingredient.objects.get(
+        if not Ingredient.objects.filter(
                 name=fruit_data['name']
         ):
             fruit_data['type'] = fruit_type
@@ -565,13 +436,13 @@ def run():
     ]
 
     for vegetable_data in vegetables:
-        if not Ingredient.objects.get(
+        if not Ingredient.objects.filter(
                 name=vegetable_data['name']
         ):
             vegetable_data['type'] = vegetable_type
             vegetable_data['price_per_unit'] = random.randint(30, 180)
             ingredient = Ingredient.objects.create(**vegetable_data)
-"""
+
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
