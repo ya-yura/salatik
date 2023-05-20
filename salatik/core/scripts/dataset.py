@@ -5,54 +5,161 @@ import random
 
 
 def run():
-    additional_type = IngredientType.objects.get(
-        name='Дополнительные ингредиенты'
-        )
-    if not additional_type:
+    try:
+        additional_type = IngredientType.objects.get(
+            name='Дополнительные ингредиенты'
+            )
+    except IngredientType.DoesNotExist:
         additional_type = IngredientType.objects.create(
             name='Дополнительные ингредиенты'
             )
 
-    garnish_type = IngredientType.objects.get(
-        name='Гарнир'
-        )
-    if not garnish_type:
+    try:
+        garnish_type = IngredientType.objects.get(
+            name='Гарнир'
+            )
+    except IngredientType.DoesNotExist:
         garnish_type = IngredientType.objects.create(
             name='Гарнир'
         )
 
-    protein_type = IngredientType.objects.get(
-        name='Белок'
-        )
-    if not protein_type:
+    try:
+        protein_type = IngredientType.objects.get(
+            name='Белок'
+            )
+    except IngredientType.DoesNotExist:
         protein_type = IngredientType.objects.create(
             name='Белок'
             )
 
-    fruit_type = IngredientType.objects.get(
-        name='Фрукты'
-        )
-    if not fruit_type:
+    try:
+        fruit_type = IngredientType.objects.get(
+            name='Фрукты'
+            )
+    except IngredientType.DoesNotExist:
         fruit_type = IngredientType.objects.create(
             name='Фрукты'
             )
 
-    vegetable_type = IngredientType.objects.get(
-        name='Овощи'
-        )
-    if not vegetable_type:
+    try:
+        vegetable_type = IngredientType.objects.get(
+            name='Овощи'
+            )
+    except IngredientType.DoesNotExist:
         vegetable_type = IngredientType.objects.create(
             name='Овощи'
             )
 
-    sauce_type = IngredientType.objects.get(
-        name='Соусы и заправки'
-        )
-    if not sauce_type:
+    try:
+        sauce_type = IngredientType.objects.get(
+            name='Соусы и заправки'
+            )
+    except IngredientType.DoesNotExist:
         sauce_type = IngredientType.objects.create(
             name='Соусы и заправки'
             )
 
+    try:
+        seasoning_type = IngredientType.objects.get(
+            name='Приправы и специи'
+            )
+    except IngredientType.DoesNotExist:
+        seasoning_type = IngredientType.objects.create(
+            name='Приправы и специи'
+            )
+
+    try:
+        seafood_type = IngredientType.objects.get(
+            name='Морепродукты'
+            )
+    except IngredientType.DoesNotExist:
+        seafood_type = IngredientType.objects.create(
+            name='Морепродукты'
+            )
+
+    try:
+        nuts_seeds_type = IngredientType.objects.get(
+            name='Семена и орехи'
+            )
+    except IngredientType.DoesNotExist:
+        nuts_seeds_type = IngredientType.objects.create(
+            name='Семена и орехи'
+            )
+
+    try:
+        dried_fruits_type = IngredientType.objects.get(
+            name='Сухие фрукты'
+            )
+    except IngredientType.DoesNotExist:
+        dried_fruits_type = IngredientType.objects.create(
+            name='Сухие фрукты'
+            )
+
+    try:
+        cheese_type = IngredientType.objects.get(
+            name='Сыры'
+            )
+    except IngredientType.DoesNotExist:
+        cheese_type = IngredientType.objects.create(
+            name='Сыры'
+            )
+
+    try:
+        pickled_vegetables_type = IngredientType.objects.get(
+            name='Маринованные овощи'
+            )
+    except IngredientType.DoesNotExist:
+        pickled_vegetables_type = IngredientType.objects.create(
+            name='Маринованные овощи'
+            )
+
+    try:
+        grains_legumes_type = IngredientType.objects.get(
+            name='Зерновые и бобовые'
+            )
+    except IngredientType.DoesNotExist:
+        grains_legumes_type = IngredientType.objects.create(
+            name='Зерновые и бобовые'
+            )
+
+    try:
+        texture_additives_type = IngredientType.objects.get(
+            name='Добавки для текстуры'
+            )
+    except IngredientType.DoesNotExist:
+        texture_additives_type = IngredientType.objects.create(
+            name='Добавки для текстуры'
+            )
+
+    try:
+        green_vegetables_type = IngredientType.objects.get(
+            name='Зеленые овощи'
+            )
+    except IngredientType.DoesNotExist:
+        green_vegetables_type = IngredientType.objects.create(
+            name='Зеленые овощи'
+            )
+
+    try:
+        spicy_additives_type = IngredientType.objects.get(
+            name='Добавки для остроты'
+            )
+    except IngredientType.DoesNotExist:
+        spicy_additives_type = IngredientType.objects.create(
+            name='Добавки для остроты'
+            )
+
+    try:
+        other_vegetables_type = IngredientType.objects.get(
+            name='Другие овощи'
+            )
+    except IngredientType.DoesNotExist:
+        other_vegetables_type = IngredientType.objects.create(
+            name='Другие овощи'
+            )
+
+
+"""
     additional_ingredients = [
         {
             'name': 'Грецкие орехи',
@@ -142,13 +249,15 @@ def run():
             'energy': 240,
             'is_available': True,
         },
-    ] 
+    ]
 
     for additional_data in additional_ingredients:
-        additional_data['type'] = additional_type
-        additional_data['price_per_unit'] = random.randint(30, 180)
-
-        ingredient = Ingredient.objects.create(**additional_data)
+        if not Ingredient.objects.get(
+                name=additional_data['name']
+        ):
+            additional_data['type'] = additional_type
+            additional_data['price_per_unit'] = random.randint(30, 180)
+            ingredient = Ingredient.objects.create(**additional_data)
 
 
 # Создание записей для соусов и заправок
@@ -196,10 +305,12 @@ def run():
     ]
 
     for sauce_data in sauces:
-        sauce_data['type'] = sauce_type
-        sauce_data['price_per_unit'] = random.randint(30, 180)
-
-        ingredient = Ingredient.objects.create(**sauce_data)
+        if not Ingredient.objects.get(
+                name=sauce_data['name']
+        ):
+            sauce_data['type'] = sauce_type
+            sauce_data['price_per_unit'] = random.randint(30, 180)
+            ingredient = Ingredient.objects.create(**sauce_data)
 
 
 # Создание записей ингредиентов - гарнир
@@ -263,10 +374,12 @@ def run():
     ]
 
     for garnish_data in garnishes:
-        garnish_data['type'] = garnish_type
-        garnish_data['price_per_unit'] = random.randint(30, 180)
-
-        ingredient = Ingredient.objects.create(**garnish_data)
+        if not Ingredient.objects.get(
+                name=garnish_data['name']
+        ):
+            garnish_data['type'] = garnish_type
+            garnish_data['price_per_unit'] = random.randint(30, 180)
+            ingredient = Ingredient.objects.create(**garnish_data)
 
 
 # Создание записей ингредиентов - белок
@@ -330,10 +443,12 @@ def run():
     ]
 
     for protein_data in proteins:
-        protein_data['type'] = protein_type
-        protein_data['price_per_unit'] = random.randint(30, 180)
-
-        ingredient = Ingredient.objects.create(**protein_data)
+        if not Ingredient.objects.get(
+                name=protein_data['name']
+        ):
+            protein_data['type'] = protein_type
+            protein_data['price_per_unit'] = random.randint(30, 180)
+            ingredient = Ingredient.objects.create(**protein_data)
 
 
 # Создание записей ингредиентов - фрукты
@@ -397,10 +512,12 @@ def run():
     ]
 
     for fruit_data in fruits:
-        fruit_data['type'] = fruit_type
-        fruit_data['price_per_unit'] = random.randint(30, 180)
-
-        ingredient = Ingredient.objects.create(**fruit_data)
+        if not Ingredient.objects.get(
+                name=fruit_data['name']
+        ):
+            fruit_data['type'] = fruit_type
+            fruit_data['price_per_unit'] = random.randint(30, 180)
+            ingredient = Ingredient.objects.create(**fruit_data)
 
 
 # Создание записей ингредиентов - овощи
@@ -448,11 +565,13 @@ def run():
     ]
 
     for vegetable_data in vegetables:
-        vegetable_data['type'] = vegetable_type
-        vegetable_data['price_per_unit'] = random.randint(30, 180)
-
-        ingredient = Ingredient.objects.create(**vegetable_data)
-
+        if not Ingredient.objects.get(
+                name=vegetable_data['name']
+        ):
+            vegetable_data['type'] = vegetable_type
+            vegetable_data['price_per_unit'] = random.randint(30, 180)
+            ingredient = Ingredient.objects.create(**vegetable_data)
+"""
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
