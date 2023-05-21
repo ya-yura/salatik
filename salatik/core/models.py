@@ -85,7 +85,8 @@ class Salad(models.Model):
     is_available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    
     class Meta:
         verbose_name = 'Салат'
         verbose_name_plural = 'Салаты'
