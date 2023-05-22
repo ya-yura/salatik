@@ -112,7 +112,7 @@ class SaladTests(APITestCase):
         self.assertEqual(Salad.objects.count(), salads_count-1)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    # def test_guest_cant_delete_salads(self): # пока нет пермишенов
+    # def test_guest_cant_delete_salads(self):  # пока нет пермишенов
     #     """Тест DELETE запроса от анонимного пользователя
     #     к эндпоинту /salads."""
 
