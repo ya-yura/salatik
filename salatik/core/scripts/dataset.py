@@ -1,7 +1,55 @@
+# python manage.py runscript dataset
+
 from core.models import IngredientType, Ingredient
 from django.core.management.base import BaseCommand
+from django.contrib.auth.hashers import make_password
+from users.models import User
 import random
-# python manage.py runscript dataset
+
+
+first_names = [
+    'Иван', 'Александр', 'Михаил', 'Дмитрий', 'Сергей', 
+    'Андрей', 'Анна', 'Елена', 'Мария', 'Ольга'
+    ]
+last_names = [
+    'Ивановченко', 'Петровидзе', 'Смирновилко', 'Сидоровченко', 
+    'Черных', 'Седых', 'Ермак', 'Жудро', 'Мусько', 'Зуенко', 'Иващенко', 
+    'Живаго', 'Дубяго', 'Долгих', 'Барских', 'Красных'
+    ]
+first_usernames = [
+    'John', 'Jane', 'Robert', 'Emily', 'Michael', 
+    'Olivia', 'William', 'Sophia'
+    ]
+last_usernames = [
+    'Smith', 'Johnson', 'Williams', 'Jones', 
+    'Brown', 'Davis', 'Miller', 'Wilson'
+    ]
+salads = [
+    'Греческий салат', 'Цезарь', 'Капрезе',
+    'Оливье', 'Салат Нисуаз', 'Вальдорф'
+    ]
+
+for i in range(100):
+    first_name = random.choice(first_names)
+    last_name = random.choice(last_names)
+    username = f'{random.choice(first_usernames)}{random.choice(last_usernames)}{i}'
+    email = f'{username}@example.com'
+    password = make_password('password123')
+    bio = f'Привет, меня зовут {first_name} {last_name}. Обожаю салаты!'
+    user = User.objects.create(
+        username=username,
+        email=email,
+        password=password,
+        first_name=first_name,
+        last_name=last_name,
+        bio=bio,
+    )
+'''
+    # Создание связанных салатов для пользователя
+    for j in range(random.randint(1, 5)):
+        salad_name = random.choice(salads)
+        user.salad_set.create(name=salad_name)
+'''
 
 
 def get_or_create_ingredient_type(name):
