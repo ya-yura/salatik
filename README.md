@@ -162,16 +162,16 @@ classDiagram
         created_at DateTimeField
         updated_at DateTimeField
     }
-    PAYMENT --|> ORDER
-    DELIVERY --|> ORDER
-    DELIVERY --|> USER
-    ORDER --|> USER
-    ORDER --|> SALAD
-    COMPONENT --|> SALAD
-    COMPONENT --|> INGREDIENTS
-    SALAD --|> USER
+    PAYMENT --|> ORDER: For
+    DELIVERY --|> ORDER: For
+    DELIVERY --|> USER: For
+    ORDER --|> USER: By
+    ORDER --|> SALAD: For
+    COMPONENT --|> SALAD: Of
+    COMPONENT --|> INGREDIENTS: With
+    SALAD --|> USER: Made by
     INGREDIENTS --|> INGREDIENT_TYPE
-    USER *--* ROLE
+    USER *--* ROLE: Each user have some roles
 ```
 
 
