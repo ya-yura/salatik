@@ -223,6 +223,7 @@ classDiagram
     COMPONENT <|-- INGREDIENTS
     SALAD <|-- USER
     INGREDIENTS <|-- INGREDIENT_TYPE
+    ROLE <|-- USER
 ```
 
 And this will produce a flow chart:
