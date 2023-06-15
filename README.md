@@ -84,59 +84,7 @@
 </picture>
 
 
-
-
- - [x] trewtrewy
- - [ ] wetret
- - [ ] List item
-
-
-```
-код
-код
-код
-```
-
-[Contribution guidelines for this project](docs/CONTRIBUTING.md)
-
-
-
-1. First list item
-   - First nested list item
-     - Second nested list item
-
-
-
-
-
-
-
-
-
-
-|                |ASCII                          |HTML                         |
-|----------------|-------------------------------|-----------------------------|
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-
-
-## KaTeX
-
-You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
-
-The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
-
-$$
-\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-$$
-
-> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
-
-
-## UML diagrams
-
-You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
+## Схема базы данных
 
 ```mermaid
 classDiagram
@@ -225,6 +173,63 @@ classDiagram
     INGREDIENTS <|-- INGREDIENT_TYPE
     ROLE <|-- USER
 ```
+
+
+
+
+
+ - [x] trewtrewy
+ - [ ] wetret
+ - [ ] List item
+
+
+```
+код
+код
+код
+```
+
+[Contribution guidelines for this project](docs/CONTRIBUTING.md)
+
+
+
+1. First list item
+   - First nested list item
+     - Second nested list item
+
+
+
+
+
+
+
+
+
+
+|                |ASCII                          |HTML                         |
+|----------------|-------------------------------|-----------------------------|
+|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
+|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
+|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
+
+
+## KaTeX
+
+You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
+
+The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
+
+$$
+\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
+$$
+
+> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
+
+
+## UML diagrams
+
+You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
+
 
 And this will produce a flow chart:
 
