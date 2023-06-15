@@ -139,8 +139,8 @@ $$
 You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
 
 ```mermaid
-erDiagram
-    USER {
+classDiagram
+    class USER {
         username CharField
         email EmailField
         password CharField
@@ -148,22 +148,22 @@ erDiagram
         last_name CharField
         bio TextField
     }
-    ROLE {
+    class ROLE {
         name CharField
         users ManyToManyField
     }
-    INGREDIENT_TYPE {
+    class INGREDIENT_TYPE {
         name CharField
         slug SlugField
         is_available BooleanField
         created_at DateTimeField
         updated_at DateTimeField
     }
-    INGREDIENTS {
+    class INGREDIENTS {
         name CharField
         slug SlugField
         photo ImageField
-        type ForeignKey('IngredientType')
+        type ForeignKey
         price_per_unit DecimalField
         protein FloatField
         fat FloatField
@@ -173,56 +173,56 @@ erDiagram
         created_at DateTimeField
         updated_at DateTimeField
     }
-    SALAD {
+    class SALAD {
         name CharField
         slug SlugField
         description TextField
         is_available BooleanField
         created_at DateTimeField
         updated_at DateTimeField
-        creator ForeignKey(User)
+        creator ForeignKey
     }
-    COMPONENT {
-        salad ForeignKey('Salad')
+    class COMPONENT {
+        salad ForeignKey
         slug SlugField
-        ingredient ForeignKey('Ingredient')
+        ingredient ForeignKey
         weight DecimalField
         order IntegerField
         is_available BooleanField
         created_at DateTimeField
         updated_at DateTimeField
     }
-    ORDER {
-        user ForeignKey(User)
-        salad ForeignKey('Salad')
+    class ORDER {
+        user ForeignKey
+        salad ForeignKey
         status CharField
         total_price DecimalField
         created_at DateTimeField
         updated_at DateTimeField
     }
-    PAYMENT {
-        order ForeignKey('Order')
+    class PAYMENT {
+        order ForeignKey
         amount DecimalField
         timestamp DateTimeField
     }
-    DELIVERY {
-        order ForeignKey('Order')
-        courier ForeignKey(User)
+    class DELIVERY {
+        order ForeignKey
+        courier ForeignKey
         address CharField
         status CharField
         delivery_fee DecimalField
         created_at DateTimeField
         updated_at DateTimeField
     }
-    PAYMENT ||--|{ ORDER: "Has"
-    DELIVERY ||--|{ ORDER: "Has"
-    DELIVERY ||--o| USER: "Is capital of"
-    ORDER ||--o| USER: "Is capital of"
-    ORDER ||--o| SALAD: "Is capital of"
-    COMPONENT ||--o| SALAD: "Is capital of"
-    COMPONENT ||--o| INGREDIENT: "Is capital of"
-    SALAD ||--o| USER: "Is capital of"
-    INGREDIENTS ||--o| INGREDIENT_TYPE : "Is capital of"
+    PAYMENT <|-- ORDER
+    DELIVERY <|-- ORDER
+    DELIVERY <|-- USER
+    ORDER <|-- USER
+    ORDER <|-- SALAD
+    COMPONENT <|-- SALAD
+    COMPONENT <|-- INGREDIENTS
+    SALAD <|-- USER
+    INGREDIENTS <|-- INGREDIENT_TYPE
 ```
 
 And this will produce a flow chart:
