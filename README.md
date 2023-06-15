@@ -162,16 +162,16 @@ classDiagram
         created_at DateTimeField
         updated_at DateTimeField
     }
-    PAYMENT <|-- ORDER
-    DELIVERY <|-- ORDER
-    DELIVERY <|-- USER
-    ORDER <|-- USER
-    ORDER <|-- SALAD
-    COMPONENT <|-- SALAD
-    COMPONENT <|-- INGREDIENTS
-    SALAD <|-- USER
-    INGREDIENTS <|-- INGREDIENT_TYPE
-    ROLE <|-- USER
+    PAYMENT --|> ORDER
+    DELIVERY --|> ORDER
+    DELIVERY --|> USER
+    ORDER --|> USER
+    ORDER --|> SALAD
+    COMPONENT --|> SALAD
+    COMPONENT --|> INGREDIENTS
+    SALAD --|> USER
+    INGREDIENTS --|> INGREDIENT_TYPE
+    USER *--* ROLE
 ```
 
 
