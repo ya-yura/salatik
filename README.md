@@ -75,6 +75,17 @@
 
 </details>
 
+## Архитектура проекта
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="http://4qd.ru/architecture.png">
+  <source media="(prefers-color-scheme: light)" srcset="http://4qd.ru/architecture.png">
+  <img alt="Architcture of app scheme." src="http://4qd.ru/architecture.png">
+</picture>
+
+
+
+
  - [x] trewtrewy
  - [ ] wetret
  - [ ] List item
@@ -95,11 +106,7 @@
      - Second nested list item
 
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="http://4qd.ru/architecture.png">
-  <source media="(prefers-color-scheme: light)" srcset="http://4qd.ru/architecture.png">
-  <img alt="Architcture of app scheme." src="http://4qd.ru/architecture.png">
-</picture>
+
 
 
 
