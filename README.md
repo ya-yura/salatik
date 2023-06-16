@@ -171,7 +171,7 @@ classDiagram
     COMPONENT --|> INGREDIENTS: With
     SALAD --|> USER: Made by
     INGREDIENTS --|> INGREDIENT_TYPE
-    USER }|..|{ ROLE: Each user have some roles
+    USER <|--|> ROLE: Each user have some roles
 ```
 
 
