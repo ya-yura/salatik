@@ -188,8 +188,8 @@ sequenceDiagram
 	break Booking cancelled
         Customer --x Customer: show failure
     end
-
-    Customer ->> Kitchen: Paid
+    Note right of Customer: Paid
+    Customer ->> Kitchen: 
 	deactivate Customer
 
 	activate Kitchen
@@ -206,13 +206,14 @@ sequenceDiagram
  
 	activate Delivery
     Note right of Delivery: Pending
-	break Order cancelled
+    break Order cancelled
     Delivery -->> Delivery: Denied
     Delivery --x Customer: Refunded
     end
-    Delivery -->> Delivery: Picking
-    Delivery -->> Delivery: Delivery
-    Delivery -->> Customer: Complete
+    Note right of Delivery: Picking
+    Note right of Delivery: Delivery
+    Note right of Delivery: Complete
+    Delivery -->> Customer:
 	deactivate Delivery
 
 
