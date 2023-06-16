@@ -297,35 +297,3 @@ flowchart TB
     style a2 fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-```mermaid
-stateDiagram
-   direction TB
-
-   accTitle: This is the accessible title
-   accDescr: This is an accessible description
-
-   classDef notMoving fill:white
-   classDef movement font-style:italic;
-   classDef badBadEvent fill:#f00,color:white,font-weight:bold,stroke-width:2px,stroke:yellow
-
-   [*] --> Still:::notMoving
-   Still --> [*]
-   Still --> Moving:::movement
-   Moving --> Still
-   Moving --> Crash:::movement
-   Crash:::badBadEvent --> [*]
-```
-
-
-
-```mermaid
-journey
-    title My working day
-    section Go to work
-      Make tea: 5: Me
-      Go upstairs: 3: Me
-      Do work: 1: Me, Cat
-    section Go home
-      Go downstairs: 5: Me
-      Sit down: 5: Me
-```
