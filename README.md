@@ -171,7 +171,7 @@ erDiagram
     DELIVERY ||--|| USER : for
     ORDER ||--|| USER : by
     ORDER ||--|{ SALAD : for
-    ORDER ||--|{ STATUS : of
+    ORDER ||--|| STATUS : of
     COMPONENT ||--|| SALAD : of
     COMPONENT ||--|{ INGREDIENTS : with
     SALAD ||--|| USER : by
