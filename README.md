@@ -259,18 +259,13 @@ stateDiagram
    accDescr: This is an accessible description
 
    classDef notMoving fill:white
-   classDef movement font-style:italic
+   classDef movement font-style:italic;
    classDef badBadEvent fill:#f00,color:white,font-weight:bold,stroke-width:2px,stroke:yellow
 
-   [*]--> Still
+   [*] --> Still:::notMoving
    Still --> [*]
-   Still --> Moving
+   Still --> Moving:::movement
    Moving --> Still
-   Moving --> Crash
-   Crash --> [*]
-
-   class Still notMoving
-   class Moving, Crash movement
-   class Crash badBadEvent
-   class end badBadEvent
+   Moving --> Crash:::movement
+   Crash:::badBadEvent --> [*]
 ```
