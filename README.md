@@ -183,18 +183,17 @@ erDiagram
 
 ```mermaid
 sequenceDiagram
-	activate Customer
+    activate Customer
 
-	break Booking cancelled
-        Customer --x Customer: show failure
+    break Booking cancelled
+    Customer --x Customer: show failure
     end
     Note right of Customer: Paid
     Customer ->> Kitchen: 
-	deactivate Customer
+    deactivate Customer
 
-	activate Kitchen
-
-	break Order cancelled
+    activate Kitchen
+    break Order cancelled
     Kitchen -->> Kitchen: Denied
     Kitchen --x Customer: Refunded
     end
@@ -202,9 +201,9 @@ sequenceDiagram
     Note right of Kitchen: Order Preparing
 
     Kitchen -->> Delivery: Prepare
-	deactivate Kitchen
+    deactivate Kitchen
  
-	activate Delivery
+    activate Delivery
     Note right of Delivery: Pending
     break Order cancelled
     Delivery -->> Delivery: Denied
@@ -213,10 +212,8 @@ sequenceDiagram
     Note right of Delivery: Picking
     Note right of Delivery: Delivery
     Note right of Delivery: Complete
-    Delivery -->> Customer:
-	deactivate Delivery
-
-
+    Delivery -->> Customer: 
+    deactivate Delivery
 ```
 
 
