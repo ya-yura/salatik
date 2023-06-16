@@ -250,3 +250,27 @@ flowchart TB
     id5(two) --> c2
     style a2 fill:#f9f,stroke:#333,stroke-width:4px
 ```
+
+```mermaid
+stateDiagram
+   direction TB
+
+   accTitle: This is the accessible title
+   accDescr: This is an accessible description
+
+   classDef notMoving fill:white
+   classDef movement font-style:italic
+   classDef badBadEvent fill:#f00,color:white,font-weight:bold,stroke-width:2px,stroke:yellow
+
+   [*]--> Still
+   Still --> [*]
+   Still --> Moving
+   Moving --> Still
+   Moving --> Crash
+   Crash --> [*]
+
+   class Still notMoving
+   class Moving, Crash movement
+   class Crash badBadEvent
+   class end badBadEvent
+```
