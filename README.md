@@ -87,91 +87,92 @@
 ## Схема базы данных
 
 ```mermaid
-classDiagram
-    class USER {
-        username : CharField
-        email : EmailField
-        password : CharField
-        first_name : CharField
-        last_name : CharField
-        bio : TextField
+erDiagram
+    USER {
+        username CharField
+        email EmailField
+        password CharField
+        first_name CharField
+        last_name CharField
+        bio TextField
     }
-    class ROLE {
-        name : CharField
-        users : ManyToManyField
+    ROLE {
+        name CharField
+        users ManyToManyField
     }
-    class INGREDIENT_TYPE {
-        name : CharField
-        slug : SlugField
-        is_available : BooleanField
-        created_at : DateTimeField
-        updated_at : DateTimeField
+    INGREDIENT_TYPE {
+        name CharField
+        slug SlugField
+        is_available BooleanField
+        created_at DateTimeField
+        updated_at DateTimeField
     }
-    class INGREDIENTS {
-        name : CharField
-        slug : SlugField
-        photo : ImageField
-        type : ForeignKey
-        price_per_unit : DecimalField
-        protein : FloatField
-        fat : FloatField
-        carbohydrates : FloatField
-        energy : FloatField
-        is_available : BooleanField
-        created_at : DateTimeField
-        updated_at : DateTimeField
+    INGREDIENTS {
+        name CharField
+        slug SlugField
+        photo ImageField
+        type ForeignKey
+        price_per_unit DecimalField
+        protein FloatField
+        fat FloatField
+        carbohydrates FloatField
+        energy FloatField
+        is_available BooleanField
+        created_at DateTimeField
+        updated_at DateTimeField
     }
-    class SALAD {
-        name : CharField
-        slug : SlugField
-        description : TextField
-        is_available : BooleanField
-        created_at : DateTimeField
-        updated_at : DateTimeField
-        creator : ForeignKey
+    SALAD {
+        name CharField
+        slug SlugField
+        description TextField
+        is_available BooleanField
+        created_at DateTimeField
+        updated_at DateTimeField
+        creator ForeignKey
     }
-    class COMPONENT {
-        salad : ForeignKey
-        slug : SlugField
-        ingredient : ForeignKey
-        weight : DecimalField
-        order : IntegerField
-        is_available : BooleanField
-        created_at : DateTimeField
-        updated_at : DateTimeField
+    COMPONENT {
+        salad ForeignKey
+        slug SlugField
+        ingredient ForeignKey
+        weight DecimalField
+        order IntegerField
+        is_available BooleanField
+        created_at DateTimeField
+        updated_at DateTimeField
     }
-    class ORDER {
-        user : ForeignKey
-        salad : ForeignKey
-        status : CharField
-        total_price : DecimalField
-        created_at : DateTimeField
-        updated_at : DateTimeField
+    ORDER {
+        user ForeignKey
+        salad ForeignKey
+        status CharField
+        total_price DecimalField
+        created_at DateTimeField
+        updated_at DateTimeField
     }
-    class PAYMENT {
-        order : ForeignKey
-        amount : DecimalField
-        timestamp : DateTimeField
+    PAYMENT {
+        order ForeignKey
+        amount DecimalField
+        timestamp DateTimeField
     }
-    class DELIVERY {
-        order : ForeignKey
-        courier : ForeignKey
-        address : CharField
-        status : CharField
-        delivery_fee : DecimalField
-        created_at : DateTimeField
-        updated_at : DateTimeField
+    DELIVERY {
+        order ForeignKey
+        courier ForeignKey
+        address CharField
+        status CharField
+        delivery_fee DecimalField
+        created_at DateTimeField
+        updated_at DateTimeField
     }
-    PAYMENT --|> ORDER: For
-    DELIVERY --|> ORDER: For
-    DELIVERY --|> USER: For
-    ORDER --|> USER: By
-    ORDER --|> SALAD: For
-    COMPONENT --|> SALAD: Of
-    COMPONENT --|> INGREDIENTS: With
-    SALAD --|> USER: Made by
-    INGREDIENTS --|> INGREDIENT_TYPE
-    USER <|--|> ROLE: Each user have some roles
+
+    PAYMENT ||--|| ORDER : for
+    DELIVERY ||--|| ORDER : for
+    DELIVERY ||--|| USER : for
+    ORDER ||--|| USER : by
+    ORDER ||--|{ SALAD : for
+    COMPONENT ||--|| SALAD : of
+    COMPONENT ||--|{ INGREDIENTS : with
+    SALAD ||--|| USER : by
+    INGREDIENTS ||--|| INGREDIENT_TYPE : of
+    USER }|--|{ ROLE : of
 ```
 
 
