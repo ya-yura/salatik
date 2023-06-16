@@ -179,6 +179,47 @@ erDiagram
     USER }|--|{ ROLE : of
 ```
 
+## Статусы заказов
+
+```mermaid
+sequenceDiagram
+	activate Customer
+
+	break Booking cancelled
+        Customer --x Customer: show failure
+    end
+
+    Customer ->> Kitchen: Paid
+	deactivate Customer
+
+	activate Kitchen
+
+	break Order cancelled
+    Kitchen -->> Kitchen: Denied
+    Kitchen --x Customer: Refunded
+    end
+
+    Note right of Kitchen: Order Preparing
+
+    Kitchen -->> Delivery: Prepare
+	deactivate Kitchen
+ 
+	activate Delivery
+    Note right of Delivery: Pending
+	break Order cancelled
+    Delivery -->> Delivery: Denied
+    Delivery --x Customer: Refunded
+    end
+    Delivery -->> Delivery: Picking
+    Delivery -->> Delivery: Delivery
+    Delivery -->> Customer: Complete
+	deactivate Delivery
+
+
+```
+
+
+
 
 
 
@@ -287,37 +328,4 @@ journey
     section Go home
       Go downstairs: 5: Me
       Sit down: 5: Me
-```
-
-
-```mermaid
-sequenceDiagram
-    participant web as Web Browser
-    participant blog as Blog Service
-    participant account as Account Service
-    participant mail as Mail Service
-    participant db as Storage
-
-    Note over web,db: The user must be logged in to submit blog posts
-    web->>+account: Logs in using credentials
-    account->>db: Query stored accounts
-    db->>account: Respond with query result
-
-    alt Credentials not found
-        account->>web: Invalid credentials
-    else Credentials found
-        account->>-web: Successfully logged in
-
-        Note over web,db: When the user is authenticated, they can now submit new posts
-        web->>+blog: Submit new post
-        blog->>db: Store post data
-
-        par Notifications
-            blog--)mail: Send mail to blog subscribers
-            blog--)db: Store in-site notifications
-        and Response
-            blog-->>-web: Successfully posted
-        end
-    end
-
 ```
