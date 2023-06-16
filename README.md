@@ -89,78 +89,78 @@
 ```mermaid
 classDiagram
     class USER {
-        username CharField
-        email EmailField
-        password CharField
-        first_name CharField
-        last_name CharField
-        bio TextField
+        username : CharField
+        email : EmailField
+        password : CharField
+        first_name : CharField
+        last_name : CharField
+        bio : TextField
     }
     class ROLE {
-        name CharField
-        users ManyToManyField
+        name : CharField
+        users : ManyToManyField
     }
     class INGREDIENT_TYPE {
-        name CharField
-        slug SlugField
-        is_available BooleanField
-        created_at DateTimeField
-        updated_at DateTimeField
+        name : CharField
+        slug : SlugField
+        is_available : BooleanField
+        created_at : DateTimeField
+        updated_at : DateTimeField
     }
     class INGREDIENTS {
-        name CharField
-        slug SlugField
-        photo ImageField
-        type ForeignKey
-        price_per_unit DecimalField
-        protein FloatField
-        fat FloatField
-        carbohydrates FloatField
-        energy FloatField
-        is_available BooleanField
-        created_at DateTimeField
-        updated_at DateTimeField
+        name : CharField
+        slug : SlugField
+        photo : ImageField
+        type : ForeignKey
+        price_per_unit : DecimalField
+        protein : FloatField
+        fat : FloatField
+        carbohydrates : FloatField
+        energy : FloatField
+        is_available : BooleanField
+        created_at : DateTimeField
+        updated_at : DateTimeField
     }
     class SALAD {
-        name CharField
-        slug SlugField
-        description TextField
-        is_available BooleanField
-        created_at DateTimeField
-        updated_at DateTimeField
-        creator ForeignKey
+        name : CharField
+        slug : SlugField
+        description : TextField
+        is_available : BooleanField
+        created_at : DateTimeField
+        updated_at : DateTimeField
+        creator : ForeignKey
     }
     class COMPONENT {
-        salad ForeignKey
-        slug SlugField
-        ingredient ForeignKey
-        weight DecimalField
-        order IntegerField
-        is_available BooleanField
-        created_at DateTimeField
-        updated_at DateTimeField
+        salad : ForeignKey
+        slug : SlugField
+        ingredient : ForeignKey
+        weight : DecimalField
+        order : IntegerField
+        is_available : BooleanField
+        created_at : DateTimeField
+        updated_at : DateTimeField
     }
     class ORDER {
-        user ForeignKey
-        salad ForeignKey
-        status CharField
-        total_price DecimalField
-        created_at DateTimeField
-        updated_at DateTimeField
+        user : ForeignKey
+        salad : ForeignKey
+        status : CharField
+        total_price : DecimalField
+        created_at : DateTimeField
+        updated_at : DateTimeField
     }
     class PAYMENT {
-        order ForeignKey
-        amount DecimalField
-        timestamp DateTimeField
+        order : ForeignKey
+        amount : DecimalField
+        timestamp : DateTimeField
     }
     class DELIVERY {
-        order ForeignKey
-        courier ForeignKey
-        address CharField
-        status CharField
-        delivery_fee DecimalField
-        created_at DateTimeField
-        updated_at DateTimeField
+        order : ForeignKey
+        courier : ForeignKey
+        address : CharField
+        status : CharField
+        delivery_fee : DecimalField
+        created_at : DateTimeField
+        updated_at : DateTimeField
     }
     PAYMENT --|> ORDER: For
     DELIVERY --|> ORDER: For
@@ -234,9 +234,19 @@ You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For e
 And this will produce a flow chart:
 
 ```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
+flowchart TB
+    c1-->a2
+    subgraph one 
+    a1-->a2
+    end
+    subgraph two 
+    b1-->b2
+    end
+    subgraph three
+    id1{{c1}}-->id2[/c2/]
+    end
+    id4>one] --> id5(two)
+    three --> id5(two)
+    id5(two) --> c2
+    style a2 fill:#f9f,stroke:#333,stroke-width:4px
 ```
