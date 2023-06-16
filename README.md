@@ -143,10 +143,13 @@ erDiagram
     ORDER {
         user ForeignKey
         salad ForeignKey
-        status CharField
+        status ForeignKey
         total_price DecimalField
         created_at DateTimeField
         updated_at DateTimeField
+    }
+    STATUS {
+        name CharField
     }
     PAYMENT {
         order ForeignKey
@@ -168,6 +171,7 @@ erDiagram
     DELIVERY ||--|| USER : for
     ORDER ||--|| USER : by
     ORDER ||--|{ SALAD : for
+    ORDER ||--|{ STATUS : of
     COMPONENT ||--|| SALAD : of
     COMPONENT ||--|{ INGREDIENTS : with
     SALAD ||--|| USER : by
