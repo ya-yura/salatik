@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block offer %}
+  <h2>Profile</h2>
+  <h3>Personal Information</h3>
+  <p>Username: {{ user.username }}</p>
+  <p>First Name: {{ user.first_name }}</p>
+  <p>Last Name: {{ user.last_name }}</p>
+  <p>Email: {{ user.email }}</p>
+  <p>Phone: {{ user.phone }}</p>
+
+  <h3>Orders</h3>
+  <ul>
+    {% for order in orders %}
+      <li>{{ order }}</li>
+    {% empty %}
+      <li>No orders available.</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Created Salads</h3>
+  <ul>
+    {% for salad in salads %}
+      <li>{{ salad }}</li>
+    {% empty %}
+      <li>No salads created.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

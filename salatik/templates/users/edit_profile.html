@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block offer %}
+  <h2>Edit Profile</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+
+    <h3>Addresses</h3>
+    {{ address_formset.management_form }}
+    {% for form in address_formset.forms %}
+      {{ form.as_table }}
+      <hr>
+    {% endfor %}
+
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}
