@@ -7,6 +7,14 @@
 
 # Техническое задание
 
+## Архитектура проекта
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="http://4qd.ru/architecture.png">
+  <source media="(prefers-color-scheme: light)" srcset="http://4qd.ru/architecture.png">
+  <img alt="Architcture of app scheme." src="http://4qd.ru/architecture.png">
+</picture>
+
 
 ## 1. Регистрация и авторизация
 
@@ -269,13 +277,7 @@
 
 - Уведомления могут быть отправлены по электронной почте, через систему уведомлений внутри приложения или другим удобным способом.
 
-## Архитектура проекта
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="http://4qd.ru/architecture.png">
-  <source media="(prefers-color-scheme: light)" srcset="http://4qd.ru/architecture.png">
-  <img alt="Architcture of app scheme." src="http://4qd.ru/architecture.png">
-</picture>
 
 
 ## Схема базы данных
