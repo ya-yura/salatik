@@ -291,6 +291,7 @@ erDiagram
         first_name CharField
         last_name CharField
         bio TextField
+        active BooleanField
     }
     ROLE {
         name CharField
