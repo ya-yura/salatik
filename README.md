@@ -208,7 +208,7 @@
 
 - Здесь должна быть доступна информация о клиенте, выбранных салатах и их количестве.
 
-- Кухонный персонал может обновлять статус заказа и отмечать его как "в процессе", "готов" или "выполнен".
+- Кухонный персонал может обновлять статус заказа и отмечать его как «в процессе», «готов» или «выполнен».
 
   
 
@@ -216,7 +216,7 @@
 
 - Страница, где кухонный персонал может отслеживать время приготовления каждого салата.
 
-- Для каждого салата должны быть поля "Начало приготовления" и "Завершение приготовления", чтобы отметить время начала и окончания приготовления.
+- Для каждого салата должны быть поля «Начало приготовления» и «Завершение приготовления», чтобы отметить время начала и окончания приготовления.
 
 - Это поможет оптимизировать процесс приготовления и соблюдать сроки выполнения заказов.
 
@@ -251,7 +251,7 @@
 
 - Здесь должна быть доступна информация о клиенте, адресе доставки и выбранных салатах.
 
-- Курьер может отметить заказ как "в доставке" и указать ожидаемое время доставки.
+- Курьер может отметить заказ как «в доставке» и указать ожидаемое время доставки.
 
   
 
@@ -259,7 +259,7 @@
 
 - Страница, где курьер может обновлять статус доставки для каждого заказа.
 
-- Курьер может отметить заказ как "доставлен" после выполнения доставки.
+- Курьер может отметить заказ как «доставлен» после выполнения доставки.
 
   
 
@@ -295,6 +295,13 @@ erDiagram
     ROLE {
         name CharField
         users ManyToManyField
+    }
+    CUSTOMER_ADDRESS {
+        city CharField
+        street CharField
+        house IntegerField
+        flat IntegerField
+        users ForeignKey
     }
     INGREDIENT_TYPE {
         name CharField
@@ -373,6 +380,7 @@ erDiagram
     SALAD ||--|| USER : by
     INGREDIENTS ||--|| INGREDIENT_TYPE : of
     USER }|--|{ ROLE : of
+    USER ||--|{ CUSTOMER_ADDRESS : by
 ```
 
 ## Статусы заказов
@@ -416,54 +424,6 @@ sequenceDiagram
 
 
 
-
-
- - [x] trewtrewy
- - [ ] wetret
- - [ ] List item
-
-
-```
-код
-код
-код
-```
-
-[Contribution guidelines for this project](docs/CONTRIBUTING.md)
-
-
-
-1. First list item
-   - First nested list item
-     - Second nested list item
-
-
-
-
-
-
-
-
-
-
-|                |ASCII                          |HTML                         |
-|----------------|-------------------------------|-----------------------------|
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-
-
-## KaTeX
-
-You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
-
-The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
-
-$$
-\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-$$
-
-> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
 
 
 ## UML diagrams
