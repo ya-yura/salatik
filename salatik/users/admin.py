@@ -4,8 +4,27 @@ from .models import User, Role, CustomerAddress
 
 
 class UserAdmin(BaseUserAdmin):
-    list_display = ('username', 'email', 'first_name',
-                    'last_name', 'is_staff', 'is_superuser')
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'email', 'bio', 'phone', 'active')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'password1', 'password2'),
+        }),
+    )
+    list_display = ('username', 'date_joined', 'get_role', 'active')
+    list_filter = ('role__name', 'active')
+    search_fields = ('username', 'first_name', 'last_name')
+
+    def get_role(self, obj):
+        if obj.role.exists():
+            return ', '.join(role.name for role in obj.role.all())
+        return None
+    get_role.short_description = 'Роль'
 
 
 class RoleAdmin(admin.ModelAdmin):
@@ -17,7 +36,20 @@ class AddressAdmin(admin.ModelAdmin):
                     'house', 'flat')
 
 
+class CustomUserAdmin(UserAdmin):
+    def save_model(self, request, obj, form, change):
+        # Проверяем, является ли созданный пользователь новым
+        if not change:
+            # Проверяем, если роль пользователя не "покупатель"
+            if obj.role.upper() != "ПОКУПАТЕЛЬ":
+                # Отправляем уведомление админу
+                self.message_user(request, "Новый пользователь зарегистрирован. Требуется одобрение.")
+        super().save_model(request, obj, form, change)
+
+
 # Регистрация моделей в административной панели
 admin.site.register(User, UserAdmin)
 admin.site.register(Role, RoleAdmin)
 admin.site.register(CustomerAddress)
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)

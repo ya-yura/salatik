@@ -11,5 +11,6 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('salad/', include('core.urls')),
     path('users/', include('users.urls')),
+    path('kitchen/', include('kitchen.urls')),
     # Другие пути...
 ]
