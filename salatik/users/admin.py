@@ -18,7 +18,7 @@ class UserAdmin(BaseUserAdmin):
     )
     list_display = ('username', 'date_joined', 'get_role', 'active')
     list_filter = ('role__name', 'active')
-    search_fields = ('username', 'first_name', 'last_name')
+    search_fields = ('username', 'email', 'phone')
 
     def get_role(self, obj):
         if obj.role.exists():
@@ -26,17 +26,6 @@ class UserAdmin(BaseUserAdmin):
         return None
     get_role.short_description = 'Роль'
 
-
-class RoleAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-
-
-class AddressAdmin(admin.ModelAdmin):
-    list_display = ('users', 'city', 'street',
-                    'house', 'flat')
-
-
-class CustomUserAdmin(UserAdmin):
     def save_model(self, request, obj, form, change):
         # Проверяем, является ли созданный пользователь новым
         if not change:
@@ -47,9 +36,15 @@ class CustomUserAdmin(UserAdmin):
         super().save_model(request, obj, form, change)
 
 
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ('users', 'city', 'street', 'house', 'flat')
+
+
 # Регистрация моделей в административной панели
 admin.site.register(User, UserAdmin)
 admin.site.register(Role, RoleAdmin)
 admin.site.register(CustomerAddress)
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
