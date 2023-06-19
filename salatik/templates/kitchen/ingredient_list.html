@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block offer %}
+  <h1>Список ингредиентов</h1>
+{% for ingredient_type in ingredient_types %}
+  <h2>{{ ingredient_type }}</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Цена 100 гр.</th>
+      </tr>
+    </thead>
+    <tbody>    
+      {% for ingredient in ingredients %}
+      {% if ingredient.type == ingredient_type %}
+        <tr>
+          <td>{{ ingredient.name }}</td>
+          <td>{{ ingredient.price_per_unit }} руб.</td>
+        </tr>
+      {% endif %}
+    {% endfor %}
+    </tbody>
+  </table>
+{% endfor %}
+
+<h2>Add New Ingredient</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Add</button>
+</form>
+
+
+{% endblock %}
+
+

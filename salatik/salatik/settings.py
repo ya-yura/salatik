@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'core',
     'api',
     'users',
-    ## 'users.apps.UsersConfig',
+    'kitchen',
+    # 'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [

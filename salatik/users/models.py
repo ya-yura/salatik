@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from slugify import slugify
+# from slugify import slugify
 
 
 class User(AbstractUser):
@@ -10,10 +10,11 @@ class User(AbstractUser):
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
-    first_name = models.CharField(max_length=255, null=True)
-    last_name = models.CharField(max_length=255, null=True)
-    bio = models.TextField(null=True)
-    phone = models.CharField(max_length=32, null=True)
+    first_name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
+    phone = models.CharField(max_length=32, null=True, blank=True)
+    active = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['username']
@@ -37,6 +38,10 @@ class Role(models.Model):
         verbose_name = 'Роль'
         verbose_name_plural = 'Роли'
 
+    def __str__(self):
+        return self.name
+
+'''
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
@@ -45,16 +50,14 @@ class Role(models.Model):
     def create(cls, **kwargs):
         kwargs['slug'] = slugify(kwargs['name'])
         return cls.objects.create(**kwargs)
-
-    def __str__(self):
-        return self.name
+'''
 
 
 class CustomerAddress(models.Model):
     """
     Адрес
     """
-    users = models.ForeignKey('User', on_delete=models.CASCADE)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
     city = models.CharField(max_length=255, null=True)
     street = models.CharField(max_length=255, null=True)
     house = models.IntegerField(null=True)
