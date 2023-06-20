@@ -1,154 +1,494 @@
-# Проект SALATIK 
+# SALATIK — Salad Delivery Project
 
-> Нужен для того, чтобы заказать себе салат!
+The SALATIK Project is an innovative web application that aims to revolutionize the way people order and enjoy healthy and delicious salads. With our platform, customers can easily browse through a wide variety of salads, customize their ingredients, and have them conveniently delivered to their doorstep.
 
-В приложении будет часть, где администраторы могут регулировать доступные ингредиенты для салатов и их наличие (склад), указывать стоимость компонентов, отслеживать заказы, их статусы. Часть для курьеров с интеграцией яндекс-карт. И пользовательская часть, где можно выбрать ингредиенты для салата, указать их количество и порядок закладки, а также оформить заказ себе домой.
+## Key Features
 
+- **Extensive Salad Menu**: Explore an extensive menu of mouthwatering salads, ranging from classic favorites to unique creations. Each salad is carefully crafted using the freshest and finest ingredients.
 
-# Техническое задание
+- **Customization Options**: Personalize your salads to suit your taste and dietary preferences. Choose from a wide selection of ingredients, dressings, and toppings to create the perfect salad combination.
 
-## Введение
+- **User Profiles**: Create your own user profile and manage your preferences. Save your favorite salad combinations for quick and easy reordering.
 
-**Цель проекта**
+- **Easy Ordering Process**: Our intuitive and user-friendly interface makes it a breeze to place your salad orders. Simply select your desired salad, customize it to your liking, and proceed to checkout.
 
-Разработать приложение заказа салата с доставкой для администратора, пользователей и курьеров.
+- **Delivery Tracking**: Track the status of your salad delivery in real-time. Stay informed about the estimated delivery time and receive updates on the progress of your order.
 
-<details>  
-<summary>1. Основные функциональные требования</summary>
+- **Secure Payment Options**: We prioritize the security of your transactions. Enjoy peace of mind with our secure and seamless payment options, ensuring that your financial information is protected.
 
-  
--   Администратор должен иметь возможность управлять компонентами, их наличием и статусом заказов.    
--   Пользователь должен иметь возможность выбирать компоненты, указывать количество и порядок их закладывания, оформлять заказ и просматривать свои заказы.    
--   Курьер должен иметь возможность просматривать данные о заказе, местоположение клиента на карте и обновлять статус заказа.
-</details> 
-  
-  
-<details>  
-<summary>2. Требования к функциональности</summary>
+- **Responsive Design**: Access the Salad Delivery Project from any device. Our platform is fully responsive, providing a seamless and enjoyable user experience on desktop, tablet, and mobile devices.
 
-  
-**2.1. Администраторская часть**
+## Get Started
 
--   Авторизация администратора
--   Управление компонентами  
--- *Добавление, редактирование и удаление компонентов с указанием названия, фотографии, описания и массы в наличии.*  
--- *Просмотр списка компонентов с указанием их текущего количества.*
--   Управление заказами
--- *Просмотр списка заказов с указанием статуса и деталей заказа.*
--- *Изменение статуса заказа (например, «в обработке», «готовится», «доставляется», «доставлен», «отменён»).*
+To get started with the SALATIK Project, follow these steps:
 
-**2.2. Пользовательская часть**
+1. Clone the repository to your local machine.
+2. Set up the necessary dependencies by running the installation commands.
+3. Configure the database settings according to your environment.
+4. Run the application using the provided command.
+5. Access the application through your preferred web browser.
 
-- Регистрация и аутентификация пользователей.    
-- Просмотр списка доступных компонентов с указанием их массы в наличии.    
-- Выбор компонентов, указание количества и порядка их закладывания в салат.    
-- Оформление заказа с указанием адреса доставки и выбором оплаты.    
-- Просмотр списка собственных заказов с указанием статуса и деталей заказа.
+## Contributing
 
-**2.3. Курьерская часть**
+We welcome and encourage contributions to the SALATIK Project. If you have any ideas, bug reports, or feature requests, feel free to open an issue or submit a pull request. Let's collaborate to make the project even better!
 
-- Авторизация курьера.    
-- Просмотр списка заказов, которые требуется доставить.    
-- Просмотр подробной информации о заказе, включая адрес доставки и контактные данные клиента.    
-- Обновление статуса заказа (например, «взят в доставку», «доставлен клиенту»).
-</details>
+## Feedback and Support
+
+If you have any questions, feedback, or need assistance with the SALATIK Project, please don't hesitate to reach out. We're here to help and ensure that you have the best experience with our platform.
+
+## License
+
+The SALATIK Project is released under the [GNU General Public License (GPL)](LICENSE). Feel free to modify, distribute, and use the code for your own purposes.
+
+---
+
+By combining the convenience of online ordering, the freshness of premium ingredients, and the joy of enjoying a healthy meal, the Salad Delivery Project aims to make nutritious eating accessible and enjoyable for everyone. Join us on this culinary journey and elevate your salad experience to new heights!
 
 
-<details>
-<summary>3. Технические требования</summary>
-
-  
-- Фреймворк: Django.    
-- Язык программирования: Python.    
-- База данных: PostgreSQL.
-
-- Интерфейс администратора должен быть реализован с использованием специальных представлений (views) и шаблонов (templates).
-- Возможность добавления, редактирования и удаления компонентов, указание их наличия (массы на складе), цены (за единицу массы).    
-- Возможность управления заказами (просмотр и редактирование статусов).
--  Пользовательский интерфейс должен быть разработан с использованием HTML, CSS и JavaScript. Для упрощения разработки пользовательского интерфейса можно использовать фреймворк Bootstrap или другие CSS-фреймворки.    
-- Реализация функциональности выбора компонентов и оформления заказа должна быть выполнена с помощью Django-форм или JavaScript для динамического добавления и удаления компонентов.    
-- Для отображения местоположения клиента на карте в курьерской части можно использовать интеграцию с сервисами карт, такими как Google Maps или Яндекс.Карты.    
-- Для обработки платежей можно использовать платежные шлюзы, такие как ЮMoney, Сбер или ВК. Интеграция с выбранным платежным шлюзом должна быть выполнена в соответствии с их документацией.    
-- Для обновления статуса заказа и отслеживания его выполнения в реальном времени можно использовать WebSocket-соединения или технологию Server-Sent Events (SSE).    
-- Приложение должно быть развернуто на сервере с использованием соответствующих настроек и конфигурации для Django приложений.
-
-
-</details>
-
- - [x] trewtrewy
- - [ ] wetret
- - [ ] List item
-
-
-```
-код
-код
-код
-```
-
-[Contribution guidelines for this project](docs/CONTRIBUTING.md)
-
-
-
-1. First list item
-   - First nested list item
-     - Second nested list item
-
+## Architecture of the project
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/25423296/163456776-7f95b81a-f1ed-45f7-b7ab-8fa810d529fa.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/25423296/163456779-a8556205-d0a5-45e2-ac17-42d089e3c3f8.png">
-  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://user-images.githubusercontent.com/25423296/163456779-a8556205-d0a5-45e2-ac17-42d089e3c3f8.png">
+  <source media="(prefers-color-scheme: dark)" srcset="http://4qd.ru/architecture.png">
+  <source media="(prefers-color-scheme: light)" srcset="http://4qd.ru/architecture.png">
+  <img alt="Architcture of app scheme." src="http://4qd.ru/architecture.png">
 </picture>
 
 
+## 1. Регистрация и авторизация
+
+  
+
+### 1.1 Регистрация
+
+- Доступна система регистрации для пользователей.
+
+- Обязательные поля: логин, пароль, email.
+
+- Проводится валидация email при регистрации (по желанию).
+
+  
+
+### 1.2 Авторизация
+
+- Пользователи могут войти в систему с использованием своего логина и пароля.
+
+  
+
+### 1.3 Роли пользователей
+
+- Роли пользователей: Аноним, Сборщик, Покупатель, Курьер, Администратор.
+
+- Администратор устанавливает роли пользователям.
+
+  
+
+### 1.4 Функциональность для разных ролей
+
+
+#### 1.4.1. Роль «Аноним»:
+   - Просмотр описаний компонентов салат и салатов.
+   - Просмотр цен, фотографий, отзывов и комментариев.
+   - Сбор набора для заказа.
+
+#### 1.4.2. Роль «Аутентифицированный пользователь (заказчик)»:
+   - Все возможности роли «Аноним».
+   - Оформление заказа салата.
+   - Просмотр сообщений от курьера или сборщика.
+   - Просмотр истории заказов и их статусов.
+   - Публикация отзывов и оценок для готовых салатов.
+   - Комментирование чужих отзывов.
+   - Редактирование и удаление собственных отзывов, комментариев и салатов.
+
+#### 1.4.3. Роль «Сборщик»:
+   - Изменение статусов заказов.
+   - Изменение стоимости и количества ингредиентов на складе.
+   - Редактирование описания и фотографий компонентов салатов.
+   - Отправка сообщений курьеру и заказчику текущего заказа.
+   - Создание задач для курьера о новых заказах.
+
+#### 1.4.4. Роль «Курьер»:
+   - Изменение статусов заказов (в пределах допустимых значений).
+   - Оставление сообщений пользователю и сборщику текущего заказа.
+   - Просмотр информации об адресе и местоположении заказчика.
+   - Получение уведомлений о новых заказах от сборщика.
+
+#### 1.4.5. Роль «Администратор»:
+   - Полные права на управление всем контентом проекта.
+   - Назначение ролей пользователям.
+   - Обладает правами администратора Django и доступом к панели администрирования Django.
+
+
+
+  
+
+## 2. Сервисы и страницы части заказчика
+
+  
+
+### 2.1 Главная страница
+
+- На главной странице отображается список рецептов салатов, отсортированных по дате публикации (от новых к старым).
+
+  
+
+### 2.2 Страница салата
+
+- На странице салата отображается полное описание салата.
+
+- Пользователи могут добавить салат в избранное.
+
+- Пользователи могут добавить салат в список покупок.
+
+- Пользователи могут подписаться на автора салата.
+
+  
+
+### 2.3 Страница пользователя
+
+- На странице пользователя отображается личная информация пользователя (имя, почта, тел, список адресов).
+
+- Отображаются все салаты, опубликованные пользователем.
+
+- Пользователи могут подписаться на пользователя.
+
+  
+
+### 2.4 Список покупок
+
+- Доступен только авторизованным пользователям.
+
+- Пользователь может отмечать салаты и добавлять их в список покупок.
+
+- На странице списка покупок отображаются все добавленные салаты.
+
+- Пользователь может скачать список покупок в формате .txt или PDF.
+
+- Ингредиенты в списке покупок не должны дублироваться; они должны быть суммированы.
+
+  
+
+### 2.5 Фильтрация по тегам
+
+- При выборе тега отображается список салатов, отмеченных этим тегом.
+
+- Фильтрация может быть по нескольким тегам в комбинации «или».
+
+  
+
+
+## 3. Часть системы для кухни
+
+  
+
+### 3.1 Управление заказами
+
+- Система должна иметь механизм управления заказами, который позволяет кухонному персоналу видеть поступающие заказы и их статус.
+
+- Страница управления стоимостью ингредиентов.
+
+- Каждый заказ должен содержать информацию о салатах, которые были выбраны клиентом, и их количестве.
+
+- Кухонный персонал должен иметь возможность просматривать и обновлять статус каждого заказа, отмечая его как "новый", "в процессе", "готов" или "выполнен".
+
+  
+
+### 3.2 Уведомления о новых заказах
+
+- Кухонный персонал должен получать уведомления о поступлении новых заказов для быстрой обработки.
+
+- Уведомления могут быть отправлены по электронной почте, через систему уведомлений внутри приложения или другими способами, удобными для кухонного персонала.
+
+  
+
+### 3.3 Отслеживание времени приготовления
+
+- Система должна иметь возможность отслеживать время, затраченное на приготовление каждого салата.
+
+- Кухонный персонал может отметить, когда салат был начат и когда он был завершен, чтобы оптимизировать процесс приготовления и соблюдать сроки выполнения заказов.
+
+  
+
+### 3.4 Уведомления клиентам
+
+- Клиентам следует отправлять уведомления о состоянии и прогрессе их заказов.
+
+- Уведомления могут содержать информацию о подтверждении заказа, о готовности заказа для самовывоза или о времени доставки.
+
+- Уведомления могут быть отправлены по электронной почте, смс или через уведомления в приложении.
+
+  
+
+### 3.5 Интеграция с системой оплаты
+
+- При необходимости система может быть интегрирована с системой оплаты, чтобы позволить клиентам оплачивать свои заказы онлайн.
+
+- Интеграция с платежными шлюзами, такими как Яндекс, Сбер или другими, позволит принимать платежи от клиентов и автоматически подтверждать статус заказа после успешной оплаты.
+
+  
+  
+  
+
+## 4. Cписок рабочих страниц управлением заказами на кухне:
+
+  
+
+### 4.1. Список заказов:
+
+- Страница, отображающая список поступающих заказов.
+
+- Каждый заказ должен содержать информацию о клиенте, выбранных салатах и их количестве.
+
+- Кухонный персонал может видеть статус каждого заказа (новый, в процессе, готов, выполнен).
+
+  
+
+### 4.2. Детали заказа:
+
+- Страница, отображающая подробную информацию о конкретном заказе.
+
+- Здесь должна быть доступна информация о клиенте, выбранных салатах и их количестве.
+
+- Кухонный персонал может обновлять статус заказа и отмечать его как «в процессе», «готов» или «выполнен».
+
+  
+
+### 4.3. Управление временем приготовления:
+
+- Страница, где кухонный персонал может отслеживать время приготовления каждого салата.
+
+- Для каждого салата должны быть поля «Начало приготовления» и «Завершение приготовления», чтобы отметить время начала и окончания приготовления.
+
+- Это поможет оптимизировать процесс приготовления и соблюдать сроки выполнения заказов.
+
+  
+
+### 4.4. Уведомления о новых заказах:
+
+- Система должна отправлять уведомления кухонному персоналу о поступлении новых заказов.
+
+- Уведомления могут быть отправлены по электронной почте, через систему уведомлений внутри приложения или другим удобным способом.
+
+  
+  
+  
+  
+
+## 5. Раздел системы, связанный с работой курьера:
+
+  
+
+### 5.1. Список заказов для доставки:
+
+- Страница, отображающая список заказов, требующих доставки.
+
+- Каждый заказ должен содержать информацию о клиенте, адресе доставки и выбранных салатах.
+
+  
+
+### 5.2. Детали заказа:
+
+- Страница, отображающая подробную информацию о конкретном заказе для доставки.
+
+- Здесь должна быть доступна информация о клиенте, адресе доставки и выбранных салатах.
+
+- Курьер может отметить заказ как «в доставке» и указать ожидаемое время доставки.
+
+  
+
+### 5.3. Управление статусом доставки:
+
+- Страница, где курьер может обновлять статус доставки для каждого заказа.
+
+- Курьер может отметить заказ как «доставлен» после выполнения доставки.
+
+  
+
+### 5.4. Маршрут доставки:
+
+- Страница, предоставляющая курьеру информацию о маршруте доставки.
+
+- Здесь должна быть отображена карта с маркерами адресов доставки для оптимального планирования маршрута.
+
+  
+
+### 5.5. Уведомления о новых заказах и обновлениях статуса:
+
+- Система должна отправлять уведомления курьеру о новых заказах и изменениях статуса доставки.
+
+- Уведомления могут быть отправлены по электронной почте, через систему уведомлений внутри приложения или другим удобным способом.
+
+
+
+
+## Database design
+
+```mermaid
+erDiagram
+    USER {
+        username CharField
+        email EmailField
+        password CharField
+        first_name CharField
+        last_name CharField
+        bio TextField
+        active BooleanField
+    }
+    ROLE {
+        name CharField
+        users ManyToManyField
+    }
+    CUSTOMER_ADDRESS {
+        city CharField
+        street CharField
+        house IntegerField
+        flat IntegerField
+        users ForeignKey
+    }
+    INGREDIENT_TYPE {
+        name CharField
+        slug SlugField
+        is_available BooleanField
+        created_at DateTimeField
+        updated_at DateTimeField
+    }
+    INGREDIENTS {
+        name CharField
+        slug SlugField
+        photo ImageField
+        type ForeignKey
+        price_per_unit DecimalField
+        protein FloatField
+        fat FloatField
+        carbohydrates FloatField
+        energy FloatField
+        is_available BooleanField
+        created_at DateTimeField
+        updated_at DateTimeField
+    }
+    SALAD {
+        name CharField
+        slug SlugField
+        description TextField
+        is_available BooleanField
+        created_at DateTimeField
+        updated_at DateTimeField
+        creator ForeignKey
+    }
+    COMPONENT {
+        salad ForeignKey
+        slug SlugField
+        ingredient ForeignKey
+        weight DecimalField
+        order IntegerField
+        is_available BooleanField
+        created_at DateTimeField
+        updated_at DateTimeField
+    }
+    ORDER {
+        user ForeignKey
+        salad ForeignKey
+        status ForeignKey
+        total_price DecimalField
+        created_at DateTimeField
+        updated_at DateTimeField
+    }
+    STATUS {
+        name CharField
+    }
+    PAYMENT {
+        order ForeignKey
+        amount DecimalField
+        timestamp DateTimeField
+    }
+    DELIVERY {
+        order ForeignKey
+        courier ForeignKey
+        address CharField
+        status CharField
+        delivery_fee DecimalField
+        created_at DateTimeField
+        updated_at DateTimeField
+    }
+
+    PAYMENT ||--|| ORDER : for
+    DELIVERY ||--|| ORDER : for
+    DELIVERY ||--|| USER : for
+    ORDER ||--|| USER : by
+    ORDER ||--|{ SALAD : for
+    ORDER ||--|| STATUS : of
+    COMPONENT ||--|| SALAD : of
+    COMPONENT ||--|{ INGREDIENTS : with
+    SALAD ||--|| USER : by
+    INGREDIENTS ||--|| INGREDIENT_TYPE : of
+    USER }|--|{ ROLE : of
+    USER ||--|{ CUSTOMER_ADDRESS : by
+```
+
+## Orders statuses
+
+```mermaid
+sequenceDiagram
+    activate Customer
+
+    break Booking cancelled
+    Customer --x Customer: show failure
+    end
+    Note right of Customer: Paid
+    Customer ->> Kitchen: 
+    deactivate Customer
+
+    activate Kitchen
+    break Order cancelled
+    Kitchen -->> Kitchen: Denied
+    Kitchen --x Customer: Refunded
+    end
+
+    Note right of Kitchen: Order Preparing
+
+    Kitchen -->> Delivery: Prepare
+    deactivate Kitchen
+ 
+    activate Delivery
+    Note right of Delivery: Pending
+    break Order cancelled
+    Delivery -->> Delivery: Denied
+    Delivery --x Customer: Refunded
+    end
+    Note right of Delivery: Picking
+    Note right of Delivery: Delivery
+    Note right of Delivery: Complete
+    Delivery -->> Customer: 
+    deactivate Delivery
+```
 
 
 
 
 
-|                |ASCII                          |HTML                         |
-|----------------|-------------------------------|-----------------------------|
-|Single backticks|`'Isn't this fun?'`            |'Isn't this fun?'            |
-|Quotes          |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|Dashes          |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
-
-
-## KaTeX
-
-You can render LaTeX mathematical expressions using [KaTeX](https://khan.github.io/KaTeX/):
-
-The *Gamma function* satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral
-
-$$
-\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.
-$$
-
-> You can find more information about **LaTeX** mathematical expressions [here](http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference).
 
 
 ## UML diagrams
 
 You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
 
-```mermaid
-sequenceDiagram
-Alice ->> Bob: Hello Bob, how are you?
-Bob-->>John: How about you John?
-Bob--x Alice: I am good thanks!
-Bob-x John: I am good thanks!
-Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
-
-Bob-->Alice: Checking with John...
-Alice->John: Yes... John, how are you?
-```
 
 And this will produce a flow chart:
 
 ```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
+flowchart TB
+    c1-->a2
+    subgraph one 
+    a1-->a2
+    end
+    subgraph two 
+    b1-->b2
+    end
+    subgraph three
+    id1{{c1}}-->id2[/c2/]
+    end
+    id4>one] --> id5(two)
+    three --> id5(two)
+    id5(two) --> c2
+    style a2 fill:#f9f,stroke:#333,stroke-width:4px
 ```
+

@@ -23,6 +23,10 @@ def ingredient_list(request):
     return render(request, 'index.html', {'ingredient_dict': ingredient_dict})
 
 
+
+
+
+
 """
 
 from elasticsearch_dsl import Search
