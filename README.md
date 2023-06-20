@@ -1,13 +1,51 @@
-# Проект SALATIK 
-> Нужен для того, чтобы заказать себе салат!
+# SALATIK — Salad Delivery Project
+
+The Salad Delivery Project is an innovative web application that aims to revolutionize the way people order and enjoy healthy and delicious salads. With our platform, customers can easily browse through a wide variety of salads, customize their ingredients, and have them conveniently delivered to their doorstep.
+
+## Key Features
+
+- **Extensive Salad Menu**: Explore an extensive menu of mouthwatering salads, ranging from classic favorites to unique creations. Each salad is carefully crafted using the freshest and finest ingredients.
+
+- **Customization Options**: Personalize your salads to suit your taste and dietary preferences. Choose from a wide selection of ingredients, dressings, and toppings to create the perfect salad combination.
+
+- **User Profiles**: Create your own user profile and manage your preferences. Save your favorite salad combinations for quick and easy reordering.
+
+- **Easy Ordering Process**: Our intuitive and user-friendly interface makes it a breeze to place your salad orders. Simply select your desired salad, customize it to your liking, and proceed to checkout.
+
+- **Delivery Tracking**: Track the status of your salad delivery in real-time. Stay informed about the estimated delivery time and receive updates on the progress of your order.
+
+- **Secure Payment Options**: We prioritize the security of your transactions. Enjoy peace of mind with our secure and seamless payment options, ensuring that your financial information is protected.
+
+- **Responsive Design**: Access the Salad Delivery Project from any device. Our platform is fully responsive, providing a seamless and enjoyable user experience on desktop, tablet, and mobile devices.
+
+## Get Started
+
+To get started with the Salad Delivery Project, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Set up the necessary dependencies by running the installation commands.
+3. Configure the database settings according to your environment.
+4. Run the application using the provided command.
+5. Access the application through your preferred web browser.
+
+## Contributing
+
+We welcome and encourage contributions to the Salad Delivery Project. If you have any ideas, bug reports, or feature requests, feel free to open an issue or submit a pull request. Let's collaborate to make the project even better!
+
+## Feedback and Support
+
+If you have any questions, feedback, or need assistance with the Salad Delivery Project, please don't hesitate to reach out. We're here to help and ensure that you have the best experience with our platform.
+
+## License
+
+The Salad Delivery Project is released under the [MIT License](LICENSE). Feel free to modify, distribute, and use the code for your own purposes.
+
+---
+
+By combining the convenience of online ordering, the freshness of premium ingredients, and the joy of enjoying a healthy meal, the Salad Delivery Project aims to make nutritious eating accessible and enjoyable for everyone. Join us on this culinary journey and elevate your salad experience to new heights!
 
 
-В приложении будет часть, где сборщики могут регулировать доступные ингредиенты для салатов и их наличие («Кухня»), указывать стоимость компонентов, отслеживать заказы, их статусы. Часть для курьеров с интеграцией яндекс-карт. И пользовательская часть, где можно выбрать ингредиенты для салата, указать их количество и порядок закладки, а также оформить заказ себе домой.
-
-
-# Техническое задание
-
-## Архитектура проекта
+## Architecture project
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="http://4qd.ru/architecture.png">
@@ -282,7 +320,7 @@
 
 
 
-## Схема базы данных
+## Database design
 
 ```mermaid
 erDiagram
@@ -386,7 +424,7 @@ erDiagram
     USER ||--|{ CUSTOMER_ADDRESS : by
 ```
 
-## Статусы заказов
+## Orders statuses
 
 ```mermaid
 sequenceDiagram
