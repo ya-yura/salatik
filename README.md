@@ -1,6 +1,6 @@
 # SALATIK — Salad Delivery Project
 
-The Salad Delivery Project is an innovative web application that aims to revolutionize the way people order and enjoy healthy and delicious salads. With our platform, customers can easily browse through a wide variety of salads, customize their ingredients, and have them conveniently delivered to their doorstep.
+The SALATIK Project is an innovative web application that aims to revolutionize the way people order and enjoy healthy and delicious salads. With our platform, customers can easily browse through a wide variety of salads, customize their ingredients, and have them conveniently delivered to their doorstep.
 
 ## Key Features
 
@@ -20,7 +20,7 @@ The Salad Delivery Project is an innovative web application that aims to revolut
 
 ## Get Started
 
-To get started with the Salad Delivery Project, follow these steps:
+To get started with the SALATIK Project, follow these steps:
 
 1. Clone the repository to your local machine.
 2. Set up the necessary dependencies by running the installation commands.
@@ -30,22 +30,22 @@ To get started with the Salad Delivery Project, follow these steps:
 
 ## Contributing
 
-We welcome and encourage contributions to the Salad Delivery Project. If you have any ideas, bug reports, or feature requests, feel free to open an issue or submit a pull request. Let's collaborate to make the project even better!
+We welcome and encourage contributions to the SALATIK Project. If you have any ideas, bug reports, or feature requests, feel free to open an issue or submit a pull request. Let's collaborate to make the project even better!
 
 ## Feedback and Support
 
-If you have any questions, feedback, or need assistance with the Salad Delivery Project, please don't hesitate to reach out. We're here to help and ensure that you have the best experience with our platform.
+If you have any questions, feedback, or need assistance with the SALATIK Project, please don't hesitate to reach out. We're here to help and ensure that you have the best experience with our platform.
 
 ## License
 
-The Salad Delivery Project is released under the [GNU License](LICENSE). Feel free to modify, distribute, and use the code for your own purposes.
+The SALATIK Project is released under the [GNU General Public License (GPL)](LICENSE). Feel free to modify, distribute, and use the code for your own purposes.
 
 ---
 
 By combining the convenience of online ordering, the freshness of premium ingredients, and the joy of enjoying a healthy meal, the Salad Delivery Project aims to make nutritious eating accessible and enjoyable for everyone. Join us on this culinary journey and elevate your salad experience to new heights!
 
 
-## Architecture project
+## Architecture of the project
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="http://4qd.ru/architecture.png">
