@@ -38,7 +38,7 @@ If you have any questions, feedback, or need assistance with the Salad Delivery 
 
 ## License
 
-The Salad Delivery Project is released under the [MIT License](LICENSE). Feel free to modify, distribute, and use the code for your own purposes.
+The Salad Delivery Project is released under the [GNU License](LICENSE). Feel free to modify, distribute, and use the code for your own purposes.
 
 ---
 
