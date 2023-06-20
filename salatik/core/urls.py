@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'salatik'
+app_name = 'core'
 
 urlpatterns = [
     # Маршрут для отображения формы поиска
@@ -9,4 +9,6 @@ urlpatterns = [
 
     # Маршрут для обработки запроса поиска
     # path('search/results/', views.search_results, name='search_results'),
+
+    path('', views.ingredient_list, name='ingredient_list'),
 ]

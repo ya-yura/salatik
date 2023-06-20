@@ -1,6 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from django.views.generic.edit import FormView
+from django.shortcuts import render, redirect
 from core.models import Ingredient
 from .forms import IngredientForm
 
@@ -12,7 +11,6 @@ def ingredient_list(request):
     if 'store' in role:
         ingredients = Ingredient.objects.all().order_by('type')
         ingredient_types = set(ingredient.type for ingredient in ingredients)
-        form = None
 
         if request.method == 'POST':
             form = IngredientForm(request.POST)
@@ -21,7 +19,7 @@ def ingredient_list(request):
                     ingredient = form.save(commit=False)
                     # Дополнительная обработка данных, если необходимо
                     ingredient.save()
-                    form = IngredientForm()
+                    return redirect('ingredient_list')  # Перенаправляем на страницу со списком ингредиентов
                 except Exception as e:
                     print(f"Ошибка сохранения данных: {e}")
         else:
