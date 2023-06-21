@@ -1,5 +1,10 @@
 # SALATIK — Salad Delivery Project
 
+[![forthebadge](http://mc6.ru/badge/used-python.svg)](https://mc6.ru)
+[![forthebadge](http://mc6.ru/badge/used-django.svg)](https://mc6.ru)
+[![forthebadge](http://mc6.ru/badge/used-flet.svg)](https://mc6.ru)
+[![forthebadge](http://mc6.ru/badge/used-react.svg)](https://mc6.ru)
+
 The SALATIK Project is an innovative web application that aims to revolutionize the way people order and enjoy healthy and delicious salads. With our platform, customers can easily browse through a wide variety of salads, customize their ingredients, and have them conveniently delivered to their doorstep.
 
 ## Key Features
