@@ -2,109 +2,139 @@
 {% block title %}SALATIK - закажи салат!{% endblock %}
 {% block offer %}
 {% load static %}
-
 {% load cache %}
 {% cache 20 index_page request.user.username %}
-
 <style>
-  .add-to-cart-button,
-  .remove-from-cart-button {
-    cursor: pointer;
-  }
+#Order-list {
+  position: fixed;
+  top: 100px;
+  right: 10px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+
+#Order-list h5 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
 </style>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Подключение jQuery -->
+
+<h3 class="fw-bold fs-3 fs-lg-5 lh-sm">Список ингредиентов</h3>
+{% for ingredient_type, ingredients in ingredient_dict.items %}
+<h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">{{ ingredient_type.name }}</h5>
+<ul>
+{% for ingredient in ingredients %}
+<li><button class="add-to-Order-button fs-0" data-ingredient="{{ ingredient.name }}">+</button> — <b>{{ ingredient.name }}</b> — <span class="fs-0">{{ ingredient.price_per_unit }} ₽</span></li>
+{% endfor %}
+</ul>
+{% endfor %}
+
+<div id="Order-list">
+  <h5 class="fw-bold fs-3 fs-lg-5 lh-sm">Список заказа</h5>
+  <ul>
+    <!-- Список будет динамически обновляться -->
+  </ul>
+</div>
+
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
-    const shoppingList = [];
-
-    const handleAddToCart = (ingredient) => {
-      if (!shoppingList.includes(ingredient)) {
-        shoppingList.push(ingredient);
-        renderShoppingList();
+$(document).ready(function() {
+  // Обработчик нажатия на кнопку "Добавить"
+  $('.add-to-Order-button').on('click', function() {
+    var ingredientName = $(this).data('ingredient');
+    var ingredientPrice = $(this).prev('.fs-0').text();
+    
+    // Проверка, чтобы не добавлять один и тот же компонент дважды
+    var existingItems = $('#Order-list ul li');
+    var isDuplicate = false;
+    existingItems.each(function() {
+      var itemName = $(this).text().split(' — ')[0];
+      if (itemName === ingredientName) {
+        isDuplicate = true;
+        return false; // Прерывание цикла each, если найден дубликат
       }
-    };
-
-    const handleRemoveFromCart = (ingredient) => {
-      const index = shoppingList.indexOf(ingredient);
-      if (index > -1) {
-        shoppingList.splice(index, 1);
-        renderShoppingList();
-      }
-    };
-
-    const renderShoppingList = () => {
-      const shoppingListContainer = document.querySelector('#shopping-list');
-      const shoppingListHTML = shoppingList.map((ingredient) => `
-        <li>${ingredient}<span class="remove-from-cart-button" data-ingredient="${ingredient}">убрать</span></li>
-      `).join('');
-      shoppingListContainer.innerHTML = shoppingListHTML;
-
-      const removeButtons = document.querySelectorAll('.remove-from-cart-button');
-      removeButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          const ingredient = button.dataset.ingredient;
-          handleRemoveFromCart(ingredient);
-        });
-      });
-    };
-
-    addToCartButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const ingredient = button.dataset.ingredient;
-        handleAddToCart(ingredient);
-      });
     });
+    
+    if (isDuplicate) {
+      // alert('Этот компонент уже добавлен в заказ.');
+      return; // Не добавлять дубликат в список
+    }
+    
+    // Создание нового элемента в списке заказа
+    var newOrderItem = $('<li></li>').text(ingredientName + ' — ' + ingredientPrice);
+    var removeButton = $('<button></button>').addClass('remove-from-Order-button fs-0').text('Удалить');
+    newOrderItem.append(removeButton);
+    $('#Order-list ul').append(newOrderItem);
+    
+    // Сохранение списка заказа в куки
+    var orderItems = getCookie('orderItems');
+    if (orderItems) {
+      orderItems += ',' + encodeURIComponent(newOrderItem.html());
+    } else {
+      orderItems = encodeURIComponent(newOrderItem.html());
+    }
+    setCookie('orderItems', orderItems, 30); // Куки будут храниться 30 дней
   });
+  
+  // Обработчик нажатия на кнопку "Удалить" в списке заказа
+  $(document).on('click', '.remove-from-Order-button', function() {
+    $(this).closest('li').remove();
+    
+    // Обновление списка заказа в куки
+    var orderItems = '';
+    $('#Order-list ul li').each(function() {
+      if (orderItems !== '') {
+        orderItems += ',';
+      }
+      orderItems += encodeURIComponent($(this).html());
+    });
+    setCookie('orderItems', orderItems, 30); // Куки будут храниться 30 дней
+  });
+  
+  // Восстановление списка заказа из куки при загрузке страницы
+  var savedOrderItems = getCookie('orderItems');
+  if (savedOrderItems) {
+    var orderItems = savedOrderItems.split(',');
+    for (var i = 0; i < orderItems.length; i++) {
+      var decodedItem = decodeURIComponent(orderItems[i]);
+      var newOrderItem = $('<li></li>').html(decodedItem);
+      $('#Order-list ul').append(newOrderItem);
+    }
+  }
+  
+  // Функция для установки значения куки
+  function setCookie(name, value, days) {
+    var expires = '';
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = '; expires=' + date.toUTCString();
+    }
+    document.cookie = name + '=' + value + expires + '; path=/';
+  }
+  
+  // Функция для получения значения куки
+  function getCookie(name) {
+    var cookieName = name + '=';
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i];
+      while (cookie.charAt(0) === ' ') {
+        cookie = cookie.substring(1, cookie.length);
+      }
+      if (cookie.indexOf(cookieName) === 0) {
+        return cookie.substring(cookieName.length, cookie.length);
+      }
+    }
+    return null;
+  }
+});
 </script>
-
-<section id="testimonial">
-  <div class="container">
-    {% for ingredient_type, ingredients in ingredient_dict.items %}
-      <div class="row h-100">
-        <div class="col-lg-7 mx-auto text-center mb-6">
-          <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">{{ ingredient_type.name }}</h5>
-        </div>
-      </div>
-     
-      <div class="row gx-2">
-        {% for ingredient in ingredients %}
-        <div class="col-sm-6 col-md-4 col-lg-3 h-100 mb-5">
-          <div class="card card-span h-100 text-white rounded-3">
-            <img class="img-fluid rounded-3 h-100" src="{% static 'assets/img/gallery/food-world.png' %}" alt="..." />
-            <div class="card-img-overlay ps-0">
-              <span class="badge bg-danger p-2 ms-3">
-                <i class="fas fa-tag me-2 fs-0"></i>
-                <span class="fs-0">{{ ingredient.price_per_unit }} ₽</span>
-              </span>
-              <span class="badge bg-primary ms-2 me-1 p-2 add-to-cart-button" data-ingredient="{{ ingredient.name }}">
-                <i class="fas fa-clock me-1 fs-0"></i>
-                <span class="fs-0">Добавить</span>
-              </span>
-            </div>
-            <div class="card-body ps-0">
-              <div class="d-flex align-items-center mb-3">
-                <img class="img-fluid" src="{% static 'assets/img/gallery/food-world-logo.png' %}" alt="" />
-                <div class="flex-1 ms-3">
-                  <h5 class="mb-0 fw-bold text-1000">{{ ingredient.name }}</h5>
-                  <span class="text-primary fs--1 me-1">
-                    <i class="fas fa-star"></i>
-                  </span>
-                  <span class="mb-0 text-primary">{{ ingredient_type.name }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    {% endfor %}
-  </div>
-</section>
-
-<h1>Список покупок</h1>
-<ul id="shopping-list"></ul>
-
 
 {% endcache %}     
 {% endblock %}

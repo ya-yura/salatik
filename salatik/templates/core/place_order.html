@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}SALATIK - оформление заказа{% endblock %}
+
+{% block offer %}
+  <h1>Оформление заказа</h1>
+  <h2>Список ингредиентов:</h2>
+  <ul>
+    {% for ingredient in shopping_list %}
+      <li>{{ ingredient }}</li>
+    {% endfor %}
+  </ul>
+  <!-- Здесь можно добавить форму или другие элементы для оформления заказа -->
+{% endblock %}
